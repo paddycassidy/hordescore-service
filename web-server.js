@@ -5,6 +5,17 @@ const moment = require('moment');
 
 const app = express();
 
+//serve static web pages
+app.use(express.static(__dirname + '/public'));
+
+//function to timestamp all logs
+const log = function(message){
+    var time = moment().format()
+    console.log('[Server] '+ time + ' ' + message)
+}
+
+
+
 //Database connection
 const MongoClient = require('mongodb').MongoClient;
 const uri = "mongodb+srv://paddycassidy:bewarethehorde@horde-score.ys2bl.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
@@ -26,14 +37,8 @@ addDocument=function(doc){
     console.log('Document added to DB')
 }
 
-//serve static web pages
-app.use(express.static(__dirname + '/public'));
 
-//function to timestamp all logs
-const log = function(message){
-    var time = moment().format()
-    console.log('[Server] '+ time + ' ' + message)
-}
+
 
 //function for looking up the full name of the ASX code
 const codeLookup = function(company){
@@ -58,7 +63,7 @@ const codeLookup = function(company){
 //endpoint for getting the full name of an ASX code
 app.get('/asx-lookup',function(req,res){
     log('ASX code lookup request made')
-    var id = req.query.id;
+    var id = req.query.investment;
     log('The requested ASX code is ' + id);
     var result = codeLookup(id);
     res.send(result)
