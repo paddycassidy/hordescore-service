@@ -38,7 +38,7 @@ addDocument=function(doc){
 }
 
 
-
+//pipeline test
 
 //function for looking up the full name of the ASX code
 const codeLookup = function(company){
