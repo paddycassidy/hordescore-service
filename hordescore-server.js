@@ -69,6 +69,6 @@ app.get('/asx-lookup',function(req,res){
     res.send(result)
 })
 
-const port = 8081;
+const port = 8080;
 app.listen(port)
 log('Server is listening on port: ' + port)
