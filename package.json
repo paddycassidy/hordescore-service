@@ -1,14 +1,14 @@
 {
   "name": "hordescore-service",
   "version": "1.0.0",
-  "description": "Protecting financial markets from digital collusion",
-  "main": "app.js",
+  "description": "Hordescore lookup and database service",
+  "main": "hordescore-service.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node hordescore-server.js"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/paddycassidy/hordescore-service.git"
+    "url": "https://github.com/paddycassidy/hordescore-service.git"
   },
   "author": "Paddy Cassidy",
   "license": "ISC",
