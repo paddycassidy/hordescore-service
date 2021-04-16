@@ -56,7 +56,7 @@ const codeLookup = function(company){
         log('The company name is ' + company);
         addDocument(company);
     }
-    else company = 'Nothing found';
+    else company = 'Nothing can be found';
     return company;
 }
 
