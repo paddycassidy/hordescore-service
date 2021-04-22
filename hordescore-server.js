@@ -59,7 +59,7 @@ const codeLookup = function(company){
 }
 
 //endpoint for getting the full name of an ASX code
-app.get('/asx-lookup',function(req,res){
+app.get('https://hordescore-service.us-south.cf.appdomain.cloud/asx-lookup',function(req,res){
     log('ASX code lookup request made')
     var id = req.query.investment;
     log('The requested ASX code is ' + id);
