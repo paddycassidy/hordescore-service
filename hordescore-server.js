@@ -6,7 +6,7 @@ const moment = require('moment');
 const app = express();
 
 //serve static web pages
-//app.use(express.static(__dirname + '/public'));
+app.use(express.static(__dirname + '/public'));
 
 //function to timestamp all logs
 const log = function(message){
@@ -59,7 +59,7 @@ const codeLookup = function(company){
 }
 
 //endpoint for getting the full name of an ASX code
-app.get('https://hordescore-service.us-south.cf.appdomain.cloud/asx-lookup',function(req,res){
+app.get('/asx-lookup',function(req,res){
     log('ASX code lookup request made')
     var id = req.query.investment;
     log('The requested ASX code is ' + id);
