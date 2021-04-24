@@ -16,7 +16,7 @@ const log = function(message){
 
 
 
-//Database connection
+//Database connection/
 const MongoClient = require('mongodb').MongoClient;
 const uri = "mongodb+srv://paddycassidy:bewarethehorde@horde-score.ys2bl.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
