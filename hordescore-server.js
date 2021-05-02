@@ -72,6 +72,6 @@ app.get('/asx-lookup',function(req,res){
     res.send(result)
 })
 
-const port = 8082;
+const port = 8080;
 app.listen(port)
 log('CORS-enabled web server is listening on port: ' + port)
