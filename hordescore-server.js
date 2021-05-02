@@ -17,9 +17,7 @@ const log = function(message){
 }
 
 //config cors 
-app.use(cors({
-    origin: 'https://hordescore.mybluemix.net/'
-}))
+app.use(cors())
 
 //Database connection/
 const MongoClient = require('mongodb').MongoClient;
