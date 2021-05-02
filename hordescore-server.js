@@ -2,6 +2,8 @@
 const express = require('express');
 //moment is a library for working with dates (may not be required)
 const moment = require('moment');
+//cors library
+const cors = require('cors');
 
 const app = express();
 
@@ -14,7 +16,10 @@ const log = function(message){
     console.log('[Server] '+ time + ' ' + message)
 }
 
-
+//config cors 
+app.use(cors({
+    origin: 'https://hordescore.mybluemix.net/'
+}))
 
 //Database connection/
 const MongoClient = require('mongodb').MongoClient;
@@ -67,6 +72,6 @@ app.get('/asx-lookup',function(req,res){
     res.send(result)
 })
 
-const port = 8080;
+const port = 8082;
 app.listen(port)
-log('Server is listening on port: ' + port)
+log('CORS-enabled web server is listening on port: ' + port)
