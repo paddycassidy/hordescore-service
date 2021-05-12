@@ -1,3 +1,5 @@
+var constants = require("./constant");
+
 //express is the webserver library
 const express = require('express');
 //moment is a library for working with dates (may not be required)
@@ -43,23 +45,26 @@ addDocument=function(doc){
 
 //function for looking up the full name of the ASX code
 const codeLookup = function(company){
-    log('Running code lookup for ' + company);
+    console.log('Running code lookup for ' + company);
     //!!!asxcodes should be moved to a seperate file!!!
-    var asxCodes = {
-        ZIP: "Zip Co Limited",
-        KGN: "Kogan.com Ltd",
-        CBA: "Commonwealth Bank Australia",
-        WBC: "Westpac Banking Corporation"
-    };
-    
-    if (asxCodes[company] !== undefined) {
-        company = asxCodes[company];
+    // var asxCodes = {
+    //     ZIP: "Zip Co Limited",
+    //     KGN: "Kogan.com Ltd",
+    //     CBA: "Commonwealth Bank Australia",
+    //     WBC: "Westpac Banking Corporation"
+    // };
+    var selectedCode = constants.ASX_CODES.find(item => item['code'] === company);
+
+    console.log("Selected Code: " + selectedCode.code);
+
+    if (selectedCode) {
+        company = selectedCode.title;
         log('The company name is ' + company);
         addDocument(company);
     }
     else company = 'Nothing can be found';
     return company;
-}
+};
 
 //endpoint for getting the full name of an ASX code
 app.get('/asx-lookup',function(req,res){
