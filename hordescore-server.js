@@ -6,6 +6,8 @@ const express = require('express');
 const moment = require('moment');
 //cors library
 const cors = require('cors');
+// use environment variables
+require('dotenv').config()
 
 const app = express();
 
@@ -75,6 +77,7 @@ app.get('/asx-lookup',function(req,res){
     res.send(result)
 })
 
-const port = 8080;
-app.listen(port)
-log('CORS-enabled web server is listening on port: ' + port)
+const port = process.env.PORT || 3000;
+app.listen(port, () => {
+    console.log(`CORS-enabled web server is listening on port ${port}`)
+})
