@@ -25,7 +25,7 @@ app.use(cors())
 
 //Database connection/
 const MongoClient = require('mongodb').MongoClient;
-const uri = "mongodb+srv://paddycassidy:bewarethehorde@horde-score.ys2bl.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
+const uri = process.env.MONGO_URI;
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
 //initialise the collection outside the connect, so others can access it
 let collectionAnalysis;
