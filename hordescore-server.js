@@ -1,5 +1,4 @@
-var constants = require("./constant");
-
+const constants = require("./constant");
 //express is the webserver library
 const express = require('express');
 //moment is a library for working with dates (may not be required)
@@ -8,11 +7,14 @@ const moment = require('moment');
 const cors = require('cors');
 // use environment variables
 require('dotenv').config()
+const axios = require('axios');
 
 const app = express();
 
 //serve static web pages
 app.use(express.static(__dirname + '/public'));
+//enable json middleware
+app.use(express.json());
 
 //function to timestamp all logs
 const log = function(message){
@@ -42,19 +44,22 @@ addDocument=function(doc){
     }
     collectionAnalysis.insertOne(document)
     console.log('Document added to DB')
-}
 
+    //call the frontend post endpoint and pass the socket data
+    axios.post('https://hordescore-service.us-south.cf.appdomain.cloud/socket-data', {company: doc})
+    .then(function (response){
+        console.log(response);
+        console.log("Sent this data to /socket-data");
+        console.log(document.company)
+    })
+    .catch(function (error){
+        console.log(error);
+    })
+}
 
 //function for looking up the full name of the ASX code
 const codeLookup = function(company){
     console.log('Running code lookup for ' + company);
-    //!!!asxcodes should be moved to a seperate file!!!
-    // var asxCodes = {
-    //     ZIP: "Zip Co Limited",
-    //     KGN: "Kogan.com Ltd",
-    //     CBA: "Commonwealth Bank Australia",
-    //     WBC: "Westpac Banking Corporation"
-    // };
     var selectedCode = constants.ASX_CODES.find(item => item['code'] === company);
 
     console.log("Selected Code: " + selectedCode.code);
@@ -77,7 +82,7 @@ app.get('/asx-lookup',function(req,res){
     res.send(result)
 })
 
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 8080;
 app.listen(port, () => {
-    console.log(`CORS-enabled web server is listening on port ${port}`)
+    console.log(`CORS-enabled lookup server is listening on port ${port}`)
 })
