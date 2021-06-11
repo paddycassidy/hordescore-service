@@ -46,7 +46,7 @@ addDocument=function(doc){
     console.log('Document added to DB')
 
     //call the frontend post endpoint and pass the socket data
-    axios.post('https://hordescore-service.us-south.cf.appdomain.cloud/socket-data', {company: doc})
+    axios.post('https://hordescore.us-south.cf.appdomain.cloud/socket-data', {company: doc})
     .then(function (response){
         console.log(response);
         console.log("Sent this data to /socket-data");
